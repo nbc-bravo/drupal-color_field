@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Color.
- */
-
 namespace Drupal\color_field;
 
 abstract class ColorBase implements ColorInterface {

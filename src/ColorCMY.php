@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\ColorCMY.
- */
-
 namespace Drupal\color_field;
 
 /**

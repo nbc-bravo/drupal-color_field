@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\ColorHex.
- */
-
 namespace Drupal\color_field;
 
 /**

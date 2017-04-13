@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\ColorRGB.
- */
-
 namespace Drupal\color_field;
 
 /**
