@@ -11,7 +11,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\StringTranslation\TranslationWrapper;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\color_field\ColorHex;
 
@@ -117,12 +117,12 @@ class ColorFieldType extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
-    // Prevent early t() calls by using the TranslationWrapper.
+    // Prevent early t() calls by using the TranslatableMarkup.
     $properties['color'] = DataDefinition::create('string')
-      ->setLabel(new TranslationWrapper('Color'));
+      ->setLabel(new TranslatableMarkup('Color'));
 
     $properties['opacity'] = DataDefinition::create('float')
-      ->setLabel(new TranslationWrapper('Opacity'));
+      ->setLabel(new TranslatableMarkup('Opacity'));
 
     return $properties;
   }
