@@ -64,4 +64,3 @@ https://github.com/mikeemoo/ColorJizz-PHP
 http://www.colorhexa.com/ff0000
 https://github.com/PrimalPHP/Color/blob/master/lib/Primal/Color/Parser.php
 https://github.com/matthewbaggett/php-color/blob/master/Color.php
-
