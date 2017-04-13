@@ -82,7 +82,6 @@ class ColorFieldWidgetDefault extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element = [];
 
     $label = $this->fieldDefinition->getLabel();
 
