@@ -2,6 +2,7 @@
  * @file
  * Javascript for Color Field.
  */
+
 (function ($, Drupal) {
 
   'use strict';
@@ -37,7 +38,7 @@
           showButtons: spectrum_settings.show_buttons,
           allowEmpty: spectrum_settings.allow_empty,
 
-          change: function(tinycolor) {
+          change: function (tinycolor) {
             $element_color.val(tinycolor.toHexString());
             $element_opacity.val(tinycolor._roundA);
           }

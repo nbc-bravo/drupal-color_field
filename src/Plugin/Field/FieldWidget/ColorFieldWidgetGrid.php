@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldWidget\ColorFieldWidgetGrid.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -143,9 +138,7 @@ class ColorFieldWidgetGrid extends WidgetBase {
     // identifying this item in error messages. We do not want to display this
     // title because the actual title display is handled at a higher level by
     // the Field module.
-
-    //$element['#theme_wrappers'] = array('color_field_widget_grid');
-
+    // $element['#theme_wrappers'] = array('color_field_widget_grid');
     $element['#attached']['library'][] = 'color_field/color-field-widget-grid';
 
     // Set Drupal settings.

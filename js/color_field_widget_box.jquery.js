@@ -30,7 +30,7 @@
                     colors: default_colors,
                     blotchClass:'color_field_widget_box__square',
                     blotchTransparentClass:'color_field_widget_box__square--transparent',
-                    clickCallback: function(color) {
+                    clickCallback: function (color) {
                         $input.val(color).trigger('change');
                     }
                 });

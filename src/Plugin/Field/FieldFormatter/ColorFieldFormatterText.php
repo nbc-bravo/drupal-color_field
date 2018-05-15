@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldFormatter\ColorFieldFormatterText.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldFormatter;
 
 use Drupal\color_field\Plugin\Field\FieldType\ColorFieldType;
@@ -64,8 +59,13 @@ class ColorFieldFormatterText extends FormatterBase {
   }
 
   /**
+   * This function is used to get the color format.
+   *
    * @param string $format
+   *    Format is of string type.
+   *
    * @return array|string
+   *   Returns array or string.
    */
   protected function getColorFormat($format = NULL) {
     $formats = [];
@@ -124,7 +124,8 @@ class ColorFieldFormatterText extends FormatterBase {
       case 'hex':
         if ($opacity && $settings['opacity']) {
           $output = $color_hex->toString(TRUE);
-        } else {
+        }
+        else {
           $output = $color_hex->toString(FALSE);
         }
         break;
@@ -132,7 +133,8 @@ class ColorFieldFormatterText extends FormatterBase {
       case 'rgb':
         if ($opacity && $settings['opacity']) {
           $output = $color_hex->toRGB()->toString(TRUE);
-        } else {
+        }
+        else {
           $output = $color_hex->toRGB()->toString(FALSE);
         }
         break;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * A color field with a custom color picker using the Field Types API.
@@ -40,12 +41,12 @@ function color_field_theme() {
   $theme = [];
 
   $theme['color_field_formatter_swatch'] = array(
-      'variables' => array(
-        'shape' => NULL,
-        'color' => NULL,
-        'width' => NULL,
-        'height' => NULL,
-      ),
+    'variables' => array(
+      'shape' => NULL,
+      'color' => NULL,
+      'width' => NULL,
+      'height' => NULL,
+    ),
   );
 
   $theme['color_field_widget_box'] = array(
@@ -75,7 +76,6 @@ function color_field_theme() {
  */
 function template_preprocess_color_field_formatter_swatch(&$variables) {
 }
-
 
 /**
  * Prepares variables for color_field widget box wrapper template.

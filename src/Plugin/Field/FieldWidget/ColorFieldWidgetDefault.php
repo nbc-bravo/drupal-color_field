@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldWidget\ColorFieldWidgetDefault.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -86,7 +81,7 @@ class ColorFieldWidgetDefault extends WidgetBase {
     $label = $this->fieldDefinition->getLabel();
 
     $element['color'] = array(
-      '#title' => t($label),
+      '#title' => $label,
       '#type' => 'textfield',
       '#maxlength' => 7,
       '#size' => 7,

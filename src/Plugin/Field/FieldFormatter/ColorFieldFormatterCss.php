@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldFormatter\ColorFieldFormatterCss.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldFormatter;
 
 use Drupal\color_field\Plugin\Field\FieldType\ColorFieldType;
@@ -56,14 +51,14 @@ class ColorFieldFormatterCss extends FormatterBase {
       '#required' => TRUE,
       '#placeholder' => 'body > div > a',
     );
-    //$element['token'] = array(
-    //  '#theme' => 'token_tree',
-    //  '#token_types' => array($instance['entity_type']),
-    //  '#dialog' => TRUE,
-    //);
+    // $element['token'] = array(
+    // '#theme' => 'token_tree',
+    // '#token_types' => array($instance['entity_type']),
+    // '#dialog' => TRUE,
+    // ); .
     $elements['property'] = array(
       '#title' => t('Property'),
-      '#description' => t(''),
+      '#description' => '',
       '#type' => 'select',
       '#default_value' => $this->getSetting('property'),
       '#required' => TRUE,
@@ -133,7 +128,8 @@ class ColorFieldFormatterCss extends FormatterBase {
       $elements['#attached']['html_head'][] = [[
         '#tag' => 'style',
         '#value' => $inline_css,
-      ], 'colorfield_css'];
+      ], 'colorfield_css',
+      ];
     }
 
     return $elements;
@@ -150,7 +146,8 @@ class ColorFieldFormatterCss extends FormatterBase {
 
     if ($opacity && $settings['opacity']) {
       $rgbtext = $color_hex->toRGB()->toString(TRUE);
-    } else {
+    }
+    else {
       $rgbtext = $color_hex->toRGB()->toString(FALSE);
     }
 

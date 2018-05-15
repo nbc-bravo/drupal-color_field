@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldWidget\ColorFieldWidgetSpectrum.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -107,7 +102,6 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     // identifying this item in error messages. We do not want to display this
     // title because the actual title display is handled at a higher level by
     // the Field module.
-
     $element['#theme_wrappers'] = array('color_field_widget_spectrum');
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-spectrum';

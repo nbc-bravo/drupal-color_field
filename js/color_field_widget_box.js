@@ -1,16 +1,22 @@
 /**
- * Color Field jQuery
+ * @file
+ * Color Field jQuery.
  */
+
 (function ($) {
+
 jQuery.fn.addColorPicker = function (props) {
-  if (!props) { props = []; }
+
+  if (!props) {
+    props = [];
+  }
 
   props = jQuery.extend({
     currentColor:'',
     blotchElemType: 'span',
     blotchClass:'colorBox',
     blotchTransparentClass:'transparentBox',
-    clickCallback: function(ignoredColor) {},
+    clickCallback: function (ignoredColor) {},
     iterationCallback: null,
     fillString: '&nbsp;',
     fillStringX: '?',
@@ -30,12 +36,12 @@ jQuery.fn.addColorPicker = function (props) {
       .addClass(props.blotchClass)
       .attr('color',color)
       .css('background-color',color);
-    // jq bug: chaining here fails if color is null b/c .css() returns (new String('transparent'))!
+    // Jq bug: chaining here fails if color is null b/c .css() returns (new String('transparent'))!
     if (props.currentColor == color) {
       elem.addClass('active');
     }
     if (props.clickCallback) {
-      elem.click(function() {
+      elem.click(function () {
         jQuery(this).parent().children('.' + props.blotchClass).removeClass('active');
         jQuery(this).addClass('active');
         props.clickCallback(jQuery(this).attr('color'));
@@ -57,7 +63,7 @@ jQuery.fn.addColorPicker = function (props) {
   }
 
   if (props.clickCallback) {
-    elem.click(function() {
+    elem.click(function () {
       jQuery(this).parent().children('.' + props.blotchClass).removeClass('active');
       jQuery(this).addClass('active');
       props.clickCallback(jQuery(this).attr('color'));

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldWidget\ColorFieldWidgetSpectrum.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -29,8 +24,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
-    ) + parent::defaultSettings();
+    return array() + parent::defaultSettings();
   }
 
   /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldType\ColorFieldType.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -91,7 +86,7 @@ class ColorFieldType extends FieldItemBase {
    */
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     $format = $field_definition->getSetting('format');
-    $color_length = isset($format) ? strlen($format) : 7 ;
+    $color_length = isset($format) ? strlen($format) : 7;
     return array(
       'columns' => array(
         'color' => array(
@@ -148,7 +143,7 @@ class ColorFieldType extends FieldItemBase {
       'color' => array(
         'Regex' => array(
           'pattern' => '/^#?(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$/i',
-        )
+        ),
       ),
     ));
 
@@ -159,7 +154,7 @@ class ColorFieldType extends FieldItemBase {
           'Range' => array(
             'min' => $min,
             'minMessage' => t('%name: the opacity may be no less than %min.', array('%name' => $label, '%min' => $min)),
-          )
+          ),
         ),
       ));
 
@@ -169,7 +164,7 @@ class ColorFieldType extends FieldItemBase {
           'Range' => array(
             'max' => $max,
             'maxMessage' => t('%name: the opacity may be no greater than %max.', array('%name' => $label, '%max' => $max)),
-          )
+          ),
         ),
       ));
     }
@@ -188,12 +183,15 @@ class ColorFieldType extends FieldItemBase {
         case '#HEXHEX':
           $values['color'] = '#111AAA';
           break;
+
         case 'HEXHEX':
           $values['color'] = '111111';
           break;
+
         case '#hexhex':
           $values['color'] = '#111aaa';
           break;
+
         case 'hexhex':
           $values['color'] = '111111';
           break;
@@ -225,12 +223,15 @@ class ColorFieldType extends FieldItemBase {
         case '#HEXHEX':
           $color = '#' . strtoupper($color);
           break;
+
         case 'HEXHEX':
           $color = strtoupper($color);
           break;
+
         case '#hexhex':
           $color = '#' . strtolower($color);
           break;
+
         case 'hexhex':
           $color = strtolower($color);
           break;

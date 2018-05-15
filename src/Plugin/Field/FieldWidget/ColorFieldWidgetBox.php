@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldWidget\ColorFieldWidgetBox.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -85,7 +80,6 @@ class ColorFieldWidgetBox extends WidgetBase {
     // identifying this item in error messages. We do not want to display this
     // title because the actual title display is handled at a higher level by
     // the Field module.
-
     $element['#theme_wrappers'] = array('color_field_widget_box');
     $element['#attributes']['class'][] = 'container-inline';
 
@@ -119,7 +113,7 @@ class ColorFieldWidgetBox extends WidgetBase {
       '#type' => 'textfield',
       '#default_value' => $color,
       '#attributes' => array('class' => array('visually-hidden')),
-   );
+    );
     $element['color']['#suffix'] = "<div class='color-field-widget-box-form'></div>";
 
     if ($this->getFieldSetting('opacity')) {

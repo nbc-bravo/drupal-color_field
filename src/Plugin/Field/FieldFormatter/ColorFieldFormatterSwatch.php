@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\color_field\Plugin\Field\FieldFormatter\ColorFieldFormatterSwatch.
- */
-
 namespace Drupal\color_field\Plugin\Field\FieldFormatter;
 
 use Drupal\color_field\Plugin\Field\FieldType\ColorFieldType;
@@ -53,21 +48,21 @@ class ColorFieldFormatterSwatch extends FormatterBase {
       '#title' => t('Shape'),
       '#options' => $this->getShape(),
       '#default_value' => $this->getSetting('shape'),
-      '#description' => t(''),
+      '#description' => '',
     );
     $elements['width'] = array(
       '#type' => 'number',
       '#title' => t('Width'),
       '#default_value' => $this->getSetting('width'),
       '#min' => 1,
-      '#description' => t(''),
+      '#description' => '',
     );
     $elements['height'] = array(
       '#type' => 'number',
       '#title' => t('Height'),
       '#default_value' => $this->getSetting('height'),
       '#min' => 1,
-      '#description' => t(''),
+      '#description' => '',
     );
 
     if ($opacity) {
@@ -82,7 +77,10 @@ class ColorFieldFormatterSwatch extends FormatterBase {
   }
 
   /**
+   * This is used to get the shape.
+   *
    * @param string $shape
+   *
    * @return array|string
    */
   protected function getShape($shape = NULL) {
@@ -112,7 +110,7 @@ class ColorFieldFormatterSwatch extends FormatterBase {
 
     $summary[] = t('Width: @width Height: @height', array(
       '@width' => $settings['width'],
-      '@height' => $settings['height']
+      '@height' => $settings['height'],
     ));
 
     if ($opacity && $settings['opacity']) {
@@ -156,7 +154,8 @@ class ColorFieldFormatterSwatch extends FormatterBase {
 
     if ($opacity && $settings['opacity']) {
       $rgbtext = $color_hex->toRGB()->toString(TRUE);
-    } else {
+    }
+    else {
       $rgbtext = $color_hex->toRGB()->toString(FALSE);
     }
 
