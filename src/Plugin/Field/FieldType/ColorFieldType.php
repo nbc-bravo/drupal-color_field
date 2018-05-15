@@ -49,14 +49,14 @@ class ColorFieldType extends FieldItemBase {
 
     $element['format'] = array(
       '#type' => 'select',
-      '#title' => t('Format storage'),
-      '#description' => t('Choose how to store the color.'),
+      '#title' => $this->t('Format storage'),
+      '#description' => $this->t('Choose how to store the color.'),
       '#default_value' => $this->getSetting('format'),
       '#options' => array(
-        '#HEXHEX' => t('#123ABC'),
-        'HEXHEX' => t('123ABC'),
-        '#hexhex' => t('#123abc'),
-        'hexhex' => t('123abc'),
+        '#HEXHEX' => $this->t('#123ABC'),
+        'HEXHEX' => $this->t('123ABC'),
+        '#hexhex' => $this->t('#123abc'),
+        'hexhex' => $this->t('123abc'),
       ),
     );
 
@@ -73,8 +73,8 @@ class ColorFieldType extends FieldItemBase {
 
     $element['opacity'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Record opacity'),
-      '#description' => t('Whether or not to record.'),
+      '#title' => $this->t('Record opacity'),
+      '#description' => $this->t('Whether or not to record.'),
       '#default_value' => $this->getSetting('opacity'),
     );
 
@@ -153,7 +153,7 @@ class ColorFieldType extends FieldItemBase {
         'opacity' => array(
           'Range' => array(
             'min' => $min,
-            'minMessage' => t('%name: the opacity may be no less than %min.', array('%name' => $label, '%min' => $min)),
+            'minMessage' => $this->t('%name: the opacity may be no less than %min.', array('%name' => $label, '%min' => $min)),
           ),
         ),
       ));
@@ -163,7 +163,7 @@ class ColorFieldType extends FieldItemBase {
         'opacity' => array(
           'Range' => array(
             'max' => $max,
-            'maxMessage' => t('%name: the opacity may be no greater than %max.', array('%name' => $label, '%max' => $max)),
+            'maxMessage' => $this->t('%name: the opacity may be no greater than %max.', array('%name' => $label, '%max' => $max)),
           ),
         ),
       ));

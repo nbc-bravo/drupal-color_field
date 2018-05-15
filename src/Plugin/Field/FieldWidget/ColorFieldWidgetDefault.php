@@ -36,15 +36,15 @@ class ColorFieldWidgetDefault extends WidgetBase {
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $element['placeholder_color'] = array(
       '#type' => 'textfield',
-      '#title' => t('Color placeholder'),
+      '#title' => $this->t('Color placeholder'),
       '#default_value' => $this->getSetting('placeholder_color'),
-      '#description' => t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
+      '#description' => $this->t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
     );
     $element['placeholder_opacity'] = array(
       '#type' => 'textfield',
-      '#title' => t('Opacity placeholder'),
+      '#title' => $this->t('Opacity placeholder'),
       '#default_value' => $this->getSetting('placeholder_opacity'),
-      '#description' => t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
+      '#description' => $this->t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
     );
     return $element;
   }
@@ -59,15 +59,15 @@ class ColorFieldWidgetDefault extends WidgetBase {
     $placeholder_opacity = $this->getSetting('placeholder_opacity');
 
     if (!empty($placeholder_color)) {
-      $summary[] = t('Color placeholder: @placeholder_color', array('@placeholder_color' => $placeholder_color));
+      $summary[] = $this->t('Color placeholder: @placeholder_color', array('@placeholder_color' => $placeholder_color));
     }
 
     if (!empty($placeholder_opacity)) {
-      $summary[] = t('Opacity placeholder: @placeholder_opacity', array('@placeholder_opacity' => $placeholder_opacity));
+      $summary[] = $this->t('Opacity placeholder: @placeholder_opacity', array('@placeholder_opacity' => $placeholder_opacity));
     }
 
     if (empty($summary)) {
-      $summary[] = t('No placeholder');
+      $summary[] = $this->t('No placeholder');
     }
 
     return $summary;
@@ -94,7 +94,7 @@ class ColorFieldWidgetDefault extends WidgetBase {
       $element['color']['#prefix'] = '<div class="container-inline">';
 
       $element['opacity'] = array(
-        '#title' => t('Opacity'),
+        '#title' => $this->t('Opacity'),
         '#type' => 'textfield',
         '#maxlength' => 4,
         '#size' => 4,

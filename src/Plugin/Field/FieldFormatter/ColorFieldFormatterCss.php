@@ -43,8 +43,8 @@ class ColorFieldFormatterCss extends FormatterBase {
     $elements = [];
 
     $elements['selector'] = array(
-      '#title' => t('Selector'),
-      '#description' => t('A valid CSS selector such as <code>.links > li > a, #logo</code>.'),
+      '#title' => $this->t('Selector'),
+      '#description' => $this->t('A valid CSS selector such as <code>.links > li > a, #logo</code>.'),
       '#type' => 'textarea',
       '#rows' => '1',
       '#default_value' => $this->getSetting('selector'),
@@ -57,19 +57,19 @@ class ColorFieldFormatterCss extends FormatterBase {
     // '#dialog' => TRUE,
     // ); .
     $elements['property'] = array(
-      '#title' => t('Property'),
+      '#title' => $this->t('Property'),
       '#description' => '',
       '#type' => 'select',
       '#default_value' => $this->getSetting('property'),
       '#required' => TRUE,
       '#options' => array(
-        'background-color' => t('Background color'),
-        'color' => t('Text color'),
+        'background-color' => $this->t('Background color'),
+        'color' => $this->t('Text color'),
       ),
     );
     $elements['important'] = array(
-      '#title' => t('Important'),
-      '#description' => t('Whenever this declaration is more important than others.'),
+      '#title' => $this->t('Important'),
+      '#description' => $this->t('Whenever this declaration is more important than others.'),
       '#type' => 'checkbox',
       '#default_value' => $this->getSetting('important'),
     );
@@ -77,7 +77,7 @@ class ColorFieldFormatterCss extends FormatterBase {
     if ($opacity) {
       $elements['opacity'] = array(
         '#type' => 'checkbox',
-        '#title' => t('Display opacity'),
+        '#title' => $this->t('Display opacity'),
         '#default_value' => $this->getSetting('opacity'),
       );
     }
@@ -94,12 +94,18 @@ class ColorFieldFormatterCss extends FormatterBase {
 
     $summary = [];
 
-    $summary[] = t('CSS selector : @css_selector', array('@css_selector' => $settings['selector']));
-    $summary[] = t('CSS property : @css_property', array('@css_property' => $settings['property']));
-    $summary[] = t('!important declaration : @important_declaration', array('@important_declaration' => (($settings['important']) ? t('Yes') : t('No'))));
+    $summary[] = $this->t('CSS selector : @css_selector', [
+      '@css_selector' => $settings['selector'],
+    ]);
+    $summary[] = $this->t('CSS property : @css_property', [
+      '@css_property' => $settings['property'],
+    ]);
+    $summary[] = $this->t('!important declaration : @important_declaration', [
+      '@important_declaration' => (($settings['important']) ? $this->t('Yes') : $this->t('No')),
+    ]);
 
     if ($opacity && $settings['opacity']) {
-      $summary[] = t('Display with opacity.');
+      $summary[] = $this->t('Display with opacity.');
     }
 
     return $summary;

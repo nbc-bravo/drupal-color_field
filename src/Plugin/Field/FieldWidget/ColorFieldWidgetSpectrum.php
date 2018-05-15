@@ -42,21 +42,21 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
 
     $element['show_input'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Show Input'),
+      '#title' => $this->t('Show Input'),
       '#default_value' => $this->getSetting('show_input'),
-      '#description' => t('Allow free form typing.'),
+      '#description' => $this->t('Allow free form typing.'),
     );
     $element['show_palette'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Show Palette'),
+      '#title' => $this->t('Show Palette'),
       '#default_value' => $this->getSetting('show_palette'),
-      '#description' => t('Show or hide Palette in Spectrum Widget'),
+      '#description' => $this->t('Show or hide Palette in Spectrum Widget'),
     );
     $element['palette'] = array(
       '#type' => 'textarea',
-      '#title' => t('Color Palette'),
+      '#title' => $this->t('Color Palette'),
       '#default_value' => $this->getSetting('palette'),
-      '#description' => t('Selectable color palette to accompany the Spectrum Widget'),
+      '#description' => $this->t('Selectable color palette to accompany the Spectrum Widget'),
       '#states' => array(
         'visible' => array(
           ':input[name="field[settings][show_palette]"]' => array('checked' => TRUE),
@@ -65,21 +65,21 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     );
     $element['show_palette_only'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Show Palette Only'),
+      '#title' => $this->t('Show Palette Only'),
       '#default_value' => $this->getSetting('show_palette_only'),
-      '#description' => t('Only show thePalette in Spectrum Widget and nothing else'),
+      '#description' => $this->t('Only show thePalette in Spectrum Widget and nothing else'),
     );
     $element['show_buttons'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Show Buttons'),
+      '#title' => $this->t('Show Buttons'),
       '#default_value' => $this->getSetting('show_buttons'),
-      '#description' => t('Add Cancel/Confirm Button.'),
+      '#description' => $this->t('Add Cancel/Confirm Button.'),
     );
     $element['allow_empty'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Allow Empty'),
+      '#title' => $this->t('Allow Empty'),
       '#default_value' => $this->getSetting('allow_empty'),
-      '#description' => t('Allow empty value.'),
+      '#description' => $this->t('Allow empty value.'),
     );
     return $element;
   }

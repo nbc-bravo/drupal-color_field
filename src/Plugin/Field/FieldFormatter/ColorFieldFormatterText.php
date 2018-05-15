@@ -42,7 +42,7 @@ class ColorFieldFormatterText extends FormatterBase {
 
     $elements['format'] = array(
       '#type' => 'select',
-      '#title' => t('Format'),
+      '#title' => $this->t('Format'),
       '#options' => $this->getColorFormat(),
       '#default_value' => $this->getSetting('format'),
     );
@@ -50,7 +50,7 @@ class ColorFieldFormatterText extends FormatterBase {
     if ($opacity) {
       $elements['opacity'] = array(
         '#type' => 'checkbox',
-        '#title' => t('Display opacity'),
+        '#title' => $this->t('Display opacity'),
         '#default_value' => $this->getSetting('opacity'),
       );
     }
@@ -87,12 +87,12 @@ class ColorFieldFormatterText extends FormatterBase {
 
     $summary = [];
 
-    $summary[] = t('@format', array(
+    $summary[] = $this->t('@format', array(
       '@format' => $this->getColorFormat($settings['format']),
     ));
 
     if ($opacity && $settings['opacity']) {
-      $summary[] = t('Display with opacity.');
+      $summary[] = $this->t('Display with opacity.');
     }
 
     return $summary;

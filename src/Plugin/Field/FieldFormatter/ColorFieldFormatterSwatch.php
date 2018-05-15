@@ -45,21 +45,21 @@ class ColorFieldFormatterSwatch extends FormatterBase {
 
     $elements['shape'] = array(
       '#type' => 'select',
-      '#title' => t('Shape'),
+      '#title' => $this->t('Shape'),
       '#options' => $this->getShape(),
       '#default_value' => $this->getSetting('shape'),
       '#description' => '',
     );
     $elements['width'] = array(
       '#type' => 'number',
-      '#title' => t('Width'),
+      '#title' => $this->t('Width'),
       '#default_value' => $this->getSetting('width'),
       '#min' => 1,
       '#description' => '',
     );
     $elements['height'] = array(
       '#type' => 'number',
-      '#title' => t('Height'),
+      '#title' => $this->t('Height'),
       '#default_value' => $this->getSetting('height'),
       '#min' => 1,
       '#description' => '',
@@ -68,7 +68,7 @@ class ColorFieldFormatterSwatch extends FormatterBase {
     if ($opacity) {
       $elements['opacity'] = array(
         '#type' => 'checkbox',
-        '#title' => t('Display opacity'),
+        '#title' => $this->t('Display opacity'),
         '#default_value' => $this->getSetting('opacity'),
       );
     }
@@ -104,17 +104,17 @@ class ColorFieldFormatterSwatch extends FormatterBase {
 
     $summary = [];
 
-    $summary[] = t('@shape', array(
+    $summary[] = $this->t('@shape', array(
       '@shape' => $this->getShape($settings['shape']),
     ));
 
-    $summary[] = t('Width: @width Height: @height', array(
+    $summary[] = $this->t('Width: @width Height: @height', array(
       '@width' => $settings['width'],
       '@height' => $settings['height'],
     ));
 
     if ($opacity && $settings['opacity']) {
-      $summary[] = t('Display with opacity.');
+      $summary[] = $this->t('Display with opacity.');
     }
 
     return $summary;

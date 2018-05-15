@@ -59,7 +59,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
     }
 
     $element['color'] = array(
-      '#title' => t('Color'),
+      '#title' => $this->t('Color'),
       '#type' => 'color',
       '#maxlength' => 7,
       '#size' => 7,
@@ -71,7 +71,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
       $element['color']['#prefix'] = '<div class="container-inline">';
 
       $element['opacity'] = array(
-        '#title' => t('Opacity'),
+        '#title' => $this->t('Opacity'),
         '#type' => 'textfield',
         '#maxlength' => 4,
         '#size' => 4,

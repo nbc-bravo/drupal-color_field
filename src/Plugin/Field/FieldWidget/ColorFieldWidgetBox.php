@@ -40,10 +40,10 @@ class ColorFieldWidgetBox extends WidgetBase {
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $element['default_colors'] = array(
       '#type' => 'textarea',
-      '#title' => t('Default colors'),
+      '#title' => $this->t('Default colors'),
       '#default_value' => $this->getSetting('default_colors'),
       '#required' => TRUE,
-      '#description' => t('Default colors for pre-selected color boxes'),
+      '#description' => $this->t('Default colors for pre-selected color boxes'),
     );
     return $element;
   }
@@ -65,7 +65,7 @@ class ColorFieldWidgetBox extends WidgetBase {
     }
 
     if (empty($summary)) {
-      $summary[] = t('No default colors');
+      $summary[] = $this->t('No default colors');
     }
 
     return $summary;
@@ -118,7 +118,7 @@ class ColorFieldWidgetBox extends WidgetBase {
 
     if ($this->getFieldSetting('opacity')) {
       $element['opacity'] = array(
-        '#title' => t('Opacity'),
+        '#title' => $this->t('Opacity'),
         '#type' => 'textfield',
         '#maxlength' => 4,
         '#size' => 4,
