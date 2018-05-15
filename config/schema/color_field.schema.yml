@@ -1,5 +1,20 @@
 # Schema for the configuration files of the color field module.
 
+field.storage_settings.color_field_type:
+  type: mapping
+  mapping:
+    format:
+      type: label
+      label: 'Format'
+
+
+field.field_settings.color_field_type:
+  type: mapping
+  mapping:
+    opacity:
+      type: integer
+      label: 'Display opacity'
+
 field.formatter.settings.color_field_formatter_text:
   type: mapping
   label: 'Color text format settings'
