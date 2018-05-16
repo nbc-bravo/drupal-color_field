@@ -169,9 +169,10 @@ class ColorFieldWidgetGrid extends WidgetBase {
 
       $element['opacity'] = array(
         '#title' => $this->t('Opacity'),
-        '#type' => 'textfield',
-        '#maxlength' => 4,
-        '#size' => 4,
+        '#type' => 'number',
+        '#min' => 0,
+        '#max' => 1,
+        '#step' => 0.01,
         '#required' => $element['#required'],
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#suffix' => '</div>',

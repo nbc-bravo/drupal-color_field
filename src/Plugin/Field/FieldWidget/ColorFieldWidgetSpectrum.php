@@ -131,9 +131,10 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
 
     if ($this->getFieldSetting('opacity')) {
       $element['opacity'] = array(
-        '#type' => 'textfield',
-        '#maxlength' => 4,
-        '#size' => 4,
+        '#type' => 'number',
+        '#min' => 0,
+        '#max' => 1,
+        '#step' => 0.01,
         '#required' => $element['#required'],
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#attributes' => array('class' => array('js-color-field-widget-spectrum__opacity', 'visually-hidden')),
