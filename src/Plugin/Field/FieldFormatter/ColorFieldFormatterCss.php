@@ -192,7 +192,7 @@ class ColorFieldFormatterCss extends FormatterBase implements ContainerFactoryPl
       $elements['#attached']['html_head'][] = [[
         '#tag' => 'style',
         '#value' => $inline_css,
-      ], 'colorfield_css',
+      ], sha1($inline_css),
       ];
     }
 
