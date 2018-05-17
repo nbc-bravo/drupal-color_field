@@ -33,14 +33,22 @@
           showInput: spectrum_settings.show_input,
           showAlpha: spectrum_settings.show_alpha,
           showPalette: spectrum_settings.show_palette,
-          showPaletteOnly: !!spectrum_settings.show_palette_only,
-          palette: [spectrum_settings.palette],
+          showPaletteOnly: spectrum_settings.show_palette_only,
+          palette: spectrum_settings.palette,
           showButtons: spectrum_settings.show_buttons,
           allowEmpty: spectrum_settings.allow_empty,
 
-          change: function (tinycolor) {
-            $element_color.val(tinycolor.toHexString());
-            $element_opacity.val(tinycolor._roundA);
+          change: function(tinycolor) {
+            var hexColor = '';
+            var opacity = '';
+
+            if (tinycolor) {
+              hexColor = tinycolor.toHexString();
+              opacity = tinycolor._roundA;
+            }
+
+            $element_color.val(hexColor);
+            $element_opacity.val(opacity);
           }
 
         });

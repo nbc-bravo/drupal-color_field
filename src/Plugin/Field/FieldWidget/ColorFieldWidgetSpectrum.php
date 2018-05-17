@@ -28,7 +28,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       'show_input' => FALSE,
       'show_palette' => FALSE,
       'palette' => '',
-      'show_palette_only' => TRUE,
+      'show_palette_only' => FALSE,
       'show_buttons' => FALSE,
       'allow_empty' => FALSE,
     ) + parent::defaultSettings();
@@ -59,7 +59,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       '#description' => $this->t('Selectable color palette to accompany the Spectrum Widget'),
       '#states' => array(
         'visible' => array(
-          ':input[name="field[settings][show_palette]"]' => array('checked' => TRUE),
+          ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][show_palette]"]' => array('checked' => TRUE),
         ),
       ),
     );
@@ -67,7 +67,12 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Show Palette Only'),
       '#default_value' => $this->getSetting('show_palette_only'),
-      '#description' => $this->t('Only show thePalette in Spectrum Widget and nothing else'),
+      '#description' => $this->t('Only show the palette in Spectrum Widget and nothing else'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][show_palette]"]' => array('checked' => TRUE),
+        ),
+      ),
     );
     $element['show_buttons'] = array(
       '#type' => 'checkbox',
@@ -108,6 +113,31 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
 
     // Set Drupal settings.
     $settings = $this->getSettings();
+     // Compare with default settings make sure they are the same datatype.
+     
+    $defaults = self::defaultSettings();
+    foreach ($settings as $key => $value) {
+      if (is_bool($defaults[$key])) {
+        $settings[$key] = boolval($value);
+      }
+    }
+
+    // Parsing Palette data so that it works with spectrum colorpicker.
+    // This will create a multidimensional array of hex values.
+    if (!empty($settings['palette'])) {
+      // Remove any whitespace.
+      $settings['palette'] =  str_replace(' ', '', $settings['palette']);
+
+      // Parse each row first and reset the palette.
+      $rows = explode("\n", $settings['palette']);
+      $settings['palette'] = array();
+
+      foreach ($rows as $row) {
+        // Next explode each row into an array of values.
+        $settings['palette'][] = $columns = explode(',', $row);
+      }
+    }
+
     $settings['show_alpha'] = $this->getFieldSetting('opacity');
     $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'] = $settings;
 
