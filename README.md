@@ -9,10 +9,18 @@
 
 ### Widgets
 
-  Plain Text
-  Pre-selected Color Boxes
-  Simple Query Color
-  (http://recursive-design.com/projects/jquery-simple-color/)
+- *Color Boxes*: Provides a row of colored boxes to select from a configured
+list of colors. If enabled, opacity is a number field.
+- *Color Default*: Textbox to put in a hex value. If enabled, opacity is a
+number field.
+- *Color Grid*: Uses [jQuery Simple Color](https://github.com/recurser/jquery-simple-color)
+to provide a pop up grid of color options. If enabled, opacity is a number
+field.
+- *Color HTML5*: Uses the color HTML5 input type to render in a browser/system
+native manner. If enabled, opacity is a number field.
+- *Color Spectrum*: Uses [Spectrum](https://github.com/bgrins/spectrum) to
+provide a user friendly color palette to choose the correct color. This has an
+integrated slider for opacity (if opacity is enabled).
 
 ## ROAD MAP
 
