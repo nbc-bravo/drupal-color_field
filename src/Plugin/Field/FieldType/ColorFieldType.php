@@ -239,6 +239,10 @@ class ColorFieldType extends FieldItemBase {
 
       $this->color = $color;
     }
+
+    if (!$this->getSetting('opacity')) {
+      unset($this->opacity);
+    }
   }
 
 }
