@@ -7,7 +7,7 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
- * Tests the creation of telephone fields.
+ * Tests color field formatters.
  *
  * @group color_field
  */
@@ -93,7 +93,7 @@ class ColorFieldFormatterTest extends BrowserTestBase {
     $this->assertSession()->responseContains('placeholder="1.0"');
     $this->assertSession()->responseContains('Freeform Color');
 
-    // Test basic entry of telephone field.
+    // Test basic entry of color field.
     $edit = [
       'title[0][value]' => $this->randomMachineName(),
       'field_color[0][color]' => "#E70000",
@@ -264,7 +264,7 @@ class ColorFieldFormatterTest extends BrowserTestBase {
     ])->save();
 
     $this->drupalPostForm('node/add/article', $edit, t('Save'));
-    $this->assertSession()->responseContains('body { background-color: RGB(255,244,48); }');
+    $this->assertSession()->responseContains('body { background-color: RGB(255,255,255); }');
 
     // Test with token selector.
     $edit = [

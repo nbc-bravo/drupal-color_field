@@ -58,8 +58,10 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
       }
     }
 
+    $label = $this->fieldDefinition->getLabel();
+    $description = $this->fieldDefinition->getDescription();
     $element['color'] = array(
-      '#title' => $this->t('Color'),
+      '#title' => $label,
       '#type' => 'color',
       '#maxlength' => 7,
       '#size' => 7,
@@ -72,6 +74,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
 
       $element['opacity'] = array(
         '#title' => $this->t('Opacity'),
+        '#description' => $description,
         '#type' => 'number',
         '#min' => 0,
         '#max' => 1,
@@ -80,6 +83,8 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#suffix' => '</div>',
       );
+    } else {
+      $element['color']['#description'] = $description;
     }
 
     return $element;
