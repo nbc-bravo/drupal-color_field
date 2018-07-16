@@ -1,10 +1,5 @@
 {
   "name": "drupal/color_field",
-  "source": {
-    "type": "git",
-    "url": "https://git.drupal.org/project/color_field",
-    "reference": "b9ffa9032f997fd982d0c7692746e15da947c703"
-  },
   "require": {
     "drupal/core": "*"
   },
