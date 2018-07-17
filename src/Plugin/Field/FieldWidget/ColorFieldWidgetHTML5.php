@@ -24,7 +24,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array() + parent::defaultSettings();
+    return [] + parent::defaultSettings();
   }
 
   /**
@@ -40,7 +40,7 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = array();
+    $summary = [];
 
     return $summary;
   }
@@ -60,19 +60,19 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
 
     $label = $this->fieldDefinition->getLabel();
     $description = $this->fieldDefinition->getDescription();
-    $element['color'] = array(
+    $element['color'] = [
       '#title' => $label,
       '#type' => 'color',
       '#maxlength' => 7,
       '#size' => 7,
       '#required' => $element['#required'],
       '#default_value' => $color,
-    );
+    ];
 
     if ($this->getFieldSetting('opacity')) {
       $element['color']['#prefix'] = '<div class="container-inline">';
 
-      $element['opacity'] = array(
+      $element['opacity'] = [
         '#title' => $this->t('Opacity'),
         '#description' => $description,
         '#type' => 'number',
@@ -82,8 +82,9 @@ class ColorFieldWidgetHTML5 extends WidgetBase {
         '#required' => $element['#required'],
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#suffix' => '</div>',
-      );
-    } else {
+      ];
+    }
+    else {
       $element['color']['#description'] = $description;
     }
 

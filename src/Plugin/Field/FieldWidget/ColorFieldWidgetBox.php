@@ -24,27 +24,27 @@ class ColorFieldWidgetBox extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'default_colors' => '
 #AC725E,#D06B64,#F83A22,#FA573C,#FF7537,#FFAD46
 #42D692,#16A765,#7BD148,#B3DC6C,#FBE983
 #92E1C0,#9FE1E7,#9FC6E7,#4986E7,#9A9CFF
 #B99AFF,#C2C2C2,#CABDBF,#CCA6AC,#F691B2
 #CD74E6,#A47AE2',
-    ) + parent::defaultSettings();
+    ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $element['default_colors'] = array(
+    $element['default_colors'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Default colors'),
       '#default_value' => $this->getSetting('default_colors'),
       '#required' => TRUE,
       '#description' => $this->t('Default colors for pre-selected color boxes'),
-    );
+    ];
     return $element;
   }
 
@@ -80,7 +80,7 @@ class ColorFieldWidgetBox extends WidgetBase {
     // identifying this item in error messages. We do not want to display this
     // title because the actual title display is handled at a higher level by
     // the Field module.
-    $element['#theme_wrappers'] = array('color_field_widget_box');
+    $element['#theme_wrappers'] = ['color_field_widget_box'];
     $element['#attributes']['class'][] = 'container-inline';
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-box';
@@ -107,17 +107,17 @@ class ColorFieldWidgetBox extends WidgetBase {
       }
     }
 
-    $element['color'] = array(
+    $element['color'] = [
       '#maxlength' => 7,
       '#size' => 7,
       '#type' => 'textfield',
       '#default_value' => $color,
-      '#attributes' => array('class' => array('visually-hidden')),
-    );
+      '#attributes' => ['class' => ['visually-hidden']],
+    ];
     $element['color']['#suffix'] = "<div class='color-field-widget-box-form'></div>";
 
     if ($this->getFieldSetting('opacity')) {
-      $element['opacity'] = array(
+      $element['opacity'] = [
         '#title' => $this->t('Opacity'),
         '#type' => 'number',
         '#min' => 0,
@@ -125,7 +125,7 @@ class ColorFieldWidgetBox extends WidgetBase {
         '#step' => 0.01,
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#placeholder' => $this->getSetting('placeholder_opacity'),
-      );
+      ];
     }
 
     return $element;

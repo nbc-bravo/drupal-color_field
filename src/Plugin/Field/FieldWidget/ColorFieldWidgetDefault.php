@@ -24,28 +24,28 @@ class ColorFieldWidgetDefault extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'placeholder_color' => '',
       'placeholder_opacity' => '',
-    ) + parent::defaultSettings();
+    ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $element['placeholder_color'] = array(
+    $element['placeholder_color'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Color placeholder'),
       '#default_value' => $this->getSetting('placeholder_color'),
       '#description' => $this->t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
-    );
-    $element['placeholder_opacity'] = array(
+    ];
+    $element['placeholder_opacity'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Opacity placeholder'),
       '#default_value' => $this->getSetting('placeholder_opacity'),
       '#description' => $this->t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
-    );
+    ];
     return $element;
   }
 
@@ -59,11 +59,11 @@ class ColorFieldWidgetDefault extends WidgetBase {
     $placeholder_opacity = $this->getSetting('placeholder_opacity');
 
     if (!empty($placeholder_color)) {
-      $summary[] = $this->t('Color placeholder: @placeholder_color', array('@placeholder_color' => $placeholder_color));
+      $summary[] = $this->t('Color placeholder: @placeholder_color', ['@placeholder_color' => $placeholder_color]);
     }
 
     if (!empty($placeholder_opacity)) {
-      $summary[] = $this->t('Opacity placeholder: @placeholder_opacity', array('@placeholder_opacity' => $placeholder_opacity));
+      $summary[] = $this->t('Opacity placeholder: @placeholder_opacity', ['@placeholder_opacity' => $placeholder_opacity]);
     }
 
     if (empty($summary)) {
@@ -80,7 +80,7 @@ class ColorFieldWidgetDefault extends WidgetBase {
 
     $label = $this->fieldDefinition->getLabel();
 
-    $element['color'] = array(
+    $element['color'] = [
       '#title' => $label,
       '#type' => 'textfield',
       '#maxlength' => 7,
@@ -88,12 +88,12 @@ class ColorFieldWidgetDefault extends WidgetBase {
       '#required' => $element['#required'],
       '#placeholder' => $this->getSetting('placeholder_color'),
       '#default_value' => isset($items[$delta]->color) ? $items[$delta]->color : NULL,
-    );
+    ];
 
     if ($this->getFieldSetting('opacity')) {
       $element['color']['#prefix'] = '<div class="container-inline">';
 
-      $element['opacity'] = array(
+      $element['opacity'] = [
         '#title' => $this->t('Opacity'),
         '#type' => 'number',
         '#min' => 0,
@@ -103,7 +103,7 @@ class ColorFieldWidgetDefault extends WidgetBase {
         '#placeholder' => $this->getSetting('placeholder_opacity'),
         '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
         '#suffix' => '</div>',
-      );
+      ];
     }
 
     return $element;

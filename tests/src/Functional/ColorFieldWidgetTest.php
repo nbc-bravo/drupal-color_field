@@ -8,6 +8,7 @@ namespace Drupal\Tests\color_field\Functional;
  * @group color_field
  */
 class ColorFieldWidgetTest extends ColorFieldFunctionalTestBase {
+
   /**
    * Test color_field_widget_html5.
    */

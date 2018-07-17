@@ -38,7 +38,6 @@ abstract class ColorFieldFunctionalTestBase extends BrowserTestBase {
    */
   protected $form;
 
-
   /**
    * {@inheritdoc}
    */
