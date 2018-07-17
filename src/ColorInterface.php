@@ -24,7 +24,7 @@ interface ColorInterface {
   public function toHex();
 
   /**
-   * Get the color as a RGB instance
+   * Get the color as a RGB instance.
    *
    * @return \Drupal\color_field\ColorRGB
    *   The color as a RGB instance.
