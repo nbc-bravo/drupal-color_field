@@ -25,6 +25,13 @@ class ColorFieldType extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
+  public static function mainPropertyName() {
+    return 'color';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function defaultFieldSettings() {
     return [
       'opacity' => TRUE,
