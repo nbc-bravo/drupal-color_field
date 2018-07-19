@@ -2,6 +2,7 @@
 
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -82,15 +83,18 @@ class ColorFieldWidgetBox extends WidgetBase {
     // the Field module.
     $element['#theme_wrappers'] = ['color_field_widget_box'];
     $element['#attributes']['class'][] = 'container-inline';
+    $box_id = Html::getUniqueId('color-box-' . $this->fieldDefinition->getName());
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-box';
 
     // Set Drupal settings.
-    $settings = [];
+    $settings[$box_id] = [
+      'required' => $this->fieldDefinition->isRequired(),
+    ];
     $default_colors = $this->getSetting('default_colors');
     preg_match_all("/#[0-9a-fA-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
     foreach ($default_colors as $color) {
-      $settings['palette'][] = $color[0];
+      $settings[$box_id]['palette'][] = $color[0];
     }
     $element['#attached']['drupalSettings']['color_field']['color_field_widget_box']['settings'] = $settings;
 
@@ -114,7 +118,7 @@ class ColorFieldWidgetBox extends WidgetBase {
       '#default_value' => $color,
       '#attributes' => ['class' => ['visually-hidden']],
     ];
-    $element['color']['#suffix'] = "<div class='color-field-widget-box-form'></div>";
+    $element['color']['#suffix'] = "<div class='color-field-widget-box-form' id='$box_id'></div>";
 
     if ($this->getFieldSetting('opacity')) {
       $element['opacity'] = [
