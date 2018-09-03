@@ -23,9 +23,7 @@ required ? 'form-required',
 ]
 %}
 
-{% if title %}
-  <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
-{% endif %}
+{{ label }}
 
 <div class="container-inline">
   {{ color }}

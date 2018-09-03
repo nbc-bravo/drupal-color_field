@@ -94,9 +94,14 @@ function template_preprocess_color_field_formatter_swatch(array &$variables) {
 function template_preprocess_color_field_widget_box(array &$variables) {
   $element = $variables['element'];
 
-  if (!empty($element['#title'])) {
-    $variables['title'] = $element['#title'];
-  }
+  $variables['label'] = ['#theme' => 'form_element_label'];
+  $variables['label'] += array_intersect_key($element, array_flip([
+    '#id',
+    '#required',
+    '#title',
+    '#title_display',
+  ]));
+
 
   if (!empty($element['#description'])) {
     $variables['description'] = $element['#description'];
@@ -110,10 +115,6 @@ function template_preprocess_color_field_widget_box(array &$variables) {
 
   // Suppress error messages.
   $variables['errors'] = NULL;
-
-  if (!empty($element['#description'])) {
-    $variables['description'] = $element['#description'];
-  }
 
   $variables['required'] = FALSE;
   if (!empty($element['#required'])) {
@@ -135,9 +136,14 @@ function template_preprocess_color_field_widget_box(array &$variables) {
 function template_preprocess_color_field_widget_spectrum(array &$variables) {
   $element = $variables['element'];
 
-  if (!empty($element['#title'])) {
-    $variables['title'] = $element['#title'];
-  }
+  $variables['label'] = ['#theme' => 'form_element_label'];
+  $variables['label'] += array_intersect_key($element, array_flip([
+    '#id',
+    '#required',
+    '#title',
+    '#title_display',
+  ]));
+
 
   if (!empty($element['#description'])) {
     $variables['description'] = $element['#description'];
@@ -151,10 +157,6 @@ function template_preprocess_color_field_widget_spectrum(array &$variables) {
 
   // Suppress error messages.
   $variables['errors'] = NULL;
-
-  if (!empty($element['#description'])) {
-    $variables['description'] = $element['#description'];
-  }
 
   $variables['required'] = FALSE;
   if (!empty($element['#required'])) {
