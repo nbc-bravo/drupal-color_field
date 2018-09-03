@@ -140,7 +140,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       }
     }
 
-    $settings['show_alpha'] = $this->getFieldSetting('opacity');
+    $settings['show_alpha'] = (bool) $this->getFieldSetting('opacity');
     $element['#attributes']['id'] = $id;
     $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'][$id] = $settings;
 

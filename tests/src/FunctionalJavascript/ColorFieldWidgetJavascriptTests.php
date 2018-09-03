@@ -151,6 +151,11 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
       ])
       ->save();
 
+    // Disable alpha on second field.
+    FieldConfig::load('node.article.field_color_repeat')
+      ->setSetting('opacity', 0)
+      ->save();
+
     $session = $this->getSession();
     $web_assert = $this->assertSession();
     $this->drupalGet('node/add/article');
@@ -166,6 +171,10 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     // 4 for the one palette plus one each for the widgets.
     $boxes = $page->findAll('css', '.sp-thumb-el');
     $this->assertEquals(6, count($boxes));
+
+    // Confirm that alpha slider is hidden if the field doesn't support opacity.
+    $alpha = $page->findAll('css', '.sp-alpha-enabled');
+    $this->assertEquals(1, count($alpha));
   }
 
 }
