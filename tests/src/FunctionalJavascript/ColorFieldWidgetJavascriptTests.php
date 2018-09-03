@@ -134,7 +134,7 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     // have a box that is selected. This also confirms that even if the storage
     // setting isn't uppercase hash prefixed hex that it still correctly selects
     // the right color in the color box widget.
-    $active = $page->findAll('css', 'button.active');
+    $active = $page->findAll('css', 'button.color_field_widget_box__square.active');
     $this->assertEquals(1, count($active));
 
     // Confirm that clicking the swatch sets the field value.
@@ -188,11 +188,11 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     $web_assert->waitForElementVisible('css', '.sp-preview');
 
     // Confirm that two fields aren't sharing settings.
-    // Also confirms that custom palette is being used correctly
-    // and that the one field's palette isn't shown.
-    // 4 for the one palette plus one each for the widgets.
+    // Also confirms that custom palette is being used correctly and that the
+    // one field's palette isn't shown. 4 for the one palette plus one each for
+    // the widget and the current color value.
     $boxes = $page->findAll('css', '.sp-thumb-el');
-    $this->assertEquals(5, count($boxes));
+    $this->assertEquals(6, count($boxes));
 
     // Confirm that alpha slider is hidden if the field doesn't support opacity.
     $alpha = $page->findAll('css', '.sp-alpha-enabled');
