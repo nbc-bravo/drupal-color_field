@@ -23,6 +23,7 @@
             $context.find('.color-field-widget-box-form').each(function (index, element) {
                 var $element = $(element);
                 var $input = $element.prev().find('input');
+                $input.hide();
                 var props = settings.color_field.color_field_widget_box.settings[$element.prop('id')];
 
                 $element.empty().addColorPicker({

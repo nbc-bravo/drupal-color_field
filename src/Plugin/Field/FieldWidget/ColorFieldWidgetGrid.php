@@ -3,7 +3,6 @@
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -18,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class ColorFieldWidgetGrid extends WidgetBase {
+class ColorFieldWidgetGrid extends ColorFieldWidgetBase {
 
   /**
    * {@inheritdoc}
@@ -133,6 +132,8 @@ class ColorFieldWidgetGrid extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+    $element = parent::formElement($items, $delta, $element, $form, $form_state);
+
     // We are nesting some sub-elements inside the parent, so we need a wrapper.
     // We also need to add another #title attribute at the top level for ease in
     // identifying this item in error messages. We do not want to display this
@@ -145,39 +146,8 @@ class ColorFieldWidgetGrid extends WidgetBase {
     $settings = $this->getSettings();
     $element['#attached']['drupalSettings']['color_field']['color_field_widget_grid'] = $settings;
 
-    // Prepare color.
-    $color = NULL;
-    if (isset($items[$delta]->color)) {
-      $color = $items[$delta]->color;
-      if (substr($color, 0, 1) !== '#') {
-        $color = '#' . $color;
-      }
-    }
-
-    $element['color'] = [
-      '#title' => $this->t('Color'),
-      '#type' => 'textfield',
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#required' => $element['#required'],
-      '#default_value' => $color,
-      '#attributes' => ['class' => ['js-color-field-widget-grid__color']],
-    ];
-
-    if ($this->getFieldSetting('opacity')) {
-      $element['color']['#prefix'] = '<div class="container-inline">';
-
-      $element['opacity'] = [
-        '#title' => $this->t('Opacity'),
-        '#type' => 'number',
-        '#min' => 0,
-        '#max' => 1,
-        '#step' => 0.01,
-        '#required' => $element['#required'],
-        '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
-        '#suffix' => '</div>',
-      ];
-    }
+    $element['color']['#attributes']['class'][] = 'js-color-field-widget-grid__color';
+    $element['color']['#wrapper_attributes']['class'][] = 'clearfix';
 
     return $element;
   }

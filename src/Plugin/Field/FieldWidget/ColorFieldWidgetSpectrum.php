@@ -2,9 +2,7 @@
 
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -19,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class ColorFieldWidgetSpectrum extends WidgetBase {
+class ColorFieldWidgetSpectrum extends ColorFieldWidgetBase {
 
   /**
    * {@inheritdoc}
@@ -103,15 +101,8 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    // We are nesting some sub-elements inside the parent, so we need a wrapper.
-    // We also need to add another #title attribute at the top level for ease in
-    // identifying this item in error messages. We do not want to display this
-    // title because the actual title display is handled at a higher level by
-    // the Field module.
-    $element['#theme_wrappers'] = ['color_field_widget_spectrum'];
-
+    $element = parent::formElement($items, $delta, $element, $form, $form_state);
     $element['#attached']['library'][] = 'color_field/color-field-widget-spectrum';
-    $id = Html::getUniqueId('spectrum-' . $this->fieldDefinition->getName());
 
     // Set Drupal settings.
     $settings = $this->getSettings();
@@ -141,38 +132,11 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     }
 
     $settings['show_alpha'] = (bool) $this->getFieldSetting('opacity');
-    $element['#attributes']['id'] = $id;
-    $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'][$id] = $settings;
-
-    // Prepare color.
-    $color = NULL;
-    if (isset($items[$delta]->color)) {
-      $color = $items[$delta]->color;
-      if (substr($color, 0, 1) !== '#') {
-        $color = '#' . $color;
-      }
-    }
-
-    $element['color'] = [
-      '#type' => 'textfield',
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#required' => $element['#required'],
-      '#default_value' => $color,
-      '#attributes' => ['class' => ['js-color-field-widget-spectrum__color']],
-    ];
-
-    if ($this->getFieldSetting('opacity')) {
-      $element['opacity'] = [
-        '#type' => 'number',
-        '#min' => 0,
-        '#max' => 1,
-        '#step' => 0.01,
-        '#required' => $element['#required'],
-        '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
-        '#attributes' => ['class' => ['js-color-field-widget-spectrum__opacity', 'visually-hidden']],
-      ];
-    }
+    $element['#attributes']['id'] = $element['#uid'];
+    $element['#attributes']['class'][] = 'js-color-field-widget-spectrum';
+    $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'][$element['#uid']] = $settings;
+    $element['color']['#attributes']['class'][] = 'js-color-field-widget-spectrum__color';
+    $element['opacity']['#attributes']['class'][] = 'js-color-field-widget-spectrum__opacity';
 
     return $element;
   }

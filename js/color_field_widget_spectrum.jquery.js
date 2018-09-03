@@ -27,6 +27,12 @@
         var $element_opacity = $element.find('.js-color-field-widget-spectrum__opacity');
         var spectrum_settings = settings.color_field.color_field_widget_spectrum[$element.attr('id')];
 
+        // Hide the widget labels if the widgets are being shown.
+        if (!spectrum_settings.show_input) {
+          $('.js-color-field-widget-spectrum').find('label').hide();
+          $element_opacity.hide();
+        }
+
         $element_color.spectrum({
           showInitial: true,
           preferredFormat: "hex",

@@ -22,12 +22,14 @@ class ColorFieldWidgetTest extends ColorFieldFunctionalTestBase {
       'weight' => 1,
     ])->save();
 
+    $session = $this->assertSession();
+
     // Confirm field label and description are rendered.
     $this->drupalGet('node/add/article');
-    $this->assertSession()->fieldExists("field_color[0][color]");
-    $this->assertSession()->fieldExists("field_color[0][opacity]");
-    $this->assertSession()->responseContains('Freeform Color');
-    $this->assertSession()->responseContains('Color field description');
+    $session->fieldExists("field_color[0][color]");
+    $session->fieldExists("field_color[0][opacity]");
+    $session->responseContains('Freeform Color');
+    $session->responseContains('Color field description');
 
     // Test basic entry of color field.
     $edit = [
@@ -37,7 +39,7 @@ class ColorFieldWidgetTest extends ColorFieldFunctionalTestBase {
     ];
 
     $this->drupalPostForm(NULL, $edit, t('Save'));
-    $this->assertSession()->responseContains('#E70000 1</div>');
+    $session->responseContains('#E70000 1</div>');
   }
 
 }

@@ -53,14 +53,6 @@ function color_field_theme() {
     ],
   ];
 
-  $theme['color_field_widget_box'] = [
-    'render element' => 'element',
-  ];
-
-  $theme['color_field_widget_spectrum'] = [
-    'render element' => 'element',
-  ];
-
   return $theme;
 }
 
@@ -79,86 +71,4 @@ function color_field_theme() {
  *     - height: The height of the color swatch.
  */
 function template_preprocess_color_field_formatter_swatch(array &$variables) {
-}
-
-/**
- * Prepares variables for color_field widget box wrapper template.
- *
- * Default template: color-field-widget-box.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - element: An associative array containing the properties of the element.
- *     Properties used: #title, #children, #required, #attributes.
- */
-function template_preprocess_color_field_widget_box(array &$variables) {
-  $element = $variables['element'];
-
-  $variables['label'] = ['#theme' => 'form_element_label'];
-  $variables['label'] += array_intersect_key($element, array_flip([
-    '#id',
-    '#required',
-    '#title',
-    '#title_display',
-  ]));
-
-  if (!empty($element['#description'])) {
-    $variables['description'] = $element['#description'];
-  }
-
-  $variables['color'] = $element['color'];
-
-  if (!empty($element['opacity'])) {
-    $variables['opacity'] = $element['opacity'];
-  }
-
-  // Suppress error messages.
-  $variables['errors'] = NULL;
-
-  $variables['required'] = FALSE;
-  if (!empty($element['#required'])) {
-    $variables['required'] = TRUE;
-  }
-
-}
-
-/**
- * Prepares variables for color_field widget box wrapper template.
- *
- * Default template: color-field-widget-box.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - element: An associative array containing the properties of the element.
- *     Properties used: #title, #children, #required, #attributes.
- */
-function template_preprocess_color_field_widget_spectrum(array &$variables) {
-  $element = $variables['element'];
-
-  $variables['label'] = ['#theme' => 'form_element_label'];
-  $variables['label'] += array_intersect_key($element, array_flip([
-    '#id',
-    '#required',
-    '#title',
-    '#title_display',
-  ]));
-
-  if (!empty($element['#description'])) {
-    $variables['description'] = $element['#description'];
-  }
-
-  $variables['color'] = $element['color'];
-
-  if (!empty($element['opacity'])) {
-    $variables['opacity'] = $element['opacity'];
-  }
-
-  // Suppress error messages.
-  $variables['errors'] = NULL;
-
-  $variables['required'] = FALSE;
-  if (!empty($element['#required'])) {
-    $variables['required'] = TRUE;
-  }
-
 }

@@ -106,13 +106,17 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     $page = $session->getPage();
 
     // Wait for elements to be generated.
-    $web_assert->waitForElementVisible('css', '#color-box-field-color_repeat button');
+    $web_assert->waitForElementVisible('css', '#color-field-field-color_repeat button');
 
-    $boxes = $page->findAll('css', '#color-box-field-color-repeat button');
+    $boxes = $page->findAll('css', '#color-field-field-color-repeat button');
     $this->assertEquals(3, count($boxes));
 
+    // Confirm that help text/label are present.
+    $web_assert->responseContains('Freeform Color');
+    $web_assert->responseContains('Color field description');
+
     // Confirm that two fields aren't sharing settings.
-    $boxes = $page->findAll('css', '#color-box-field-color button');
+    $boxes = $page->findAll('css', '#color-field-field-color button');
     $this->assertEquals(6, count($boxes));
 
     /** @var \Behat\Mink\Element\NodeElement $box */
@@ -162,6 +166,10 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
 
     $page = $session->getPage();
 
+    // Confirm that help text/label are present.
+    $web_assert->responseContains('Freeform Color');
+    $web_assert->responseContains('Color field description');
+
     // Wait for elements to be generated.
     $web_assert->waitForElementVisible('css', '.sp-preview');
 
@@ -170,7 +178,7 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     // and that the one field's palette isn't shown.
     // 4 for the one palette plus one each for the widgets.
     $boxes = $page->findAll('css', '.sp-thumb-el');
-    $this->assertEquals(6, count($boxes));
+    $this->assertEquals(5, count($boxes));
 
     // Confirm that alpha slider is hidden if the field doesn't support opacity.
     $alpha = $page->findAll('css', '.sp-alpha-enabled');

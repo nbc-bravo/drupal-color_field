@@ -29,11 +29,13 @@ class ColorFieldFormatterTest extends ColorFieldFunctionalTestBase {
 
     // Display creation form.
     $this->drupalGet('node/add/article');
-    $this->assertSession()->fieldExists("field_color[0][color]");
-    $this->assertSession()->fieldExists("field_color[0][opacity]");
-    $this->assertSession()->responseContains('placeholder="#ABC123"');
-    $this->assertSession()->responseContains('placeholder="1.0"');
-    $this->assertSession()->responseContains('Freeform Color');
+    $session = $this->assertSession();
+    $session->fieldExists("field_color[0][color]");
+    $session->fieldExists("field_color[0][opacity]");
+    $session->responseContains('placeholder="#ABC123"');
+    $session->responseContains('placeholder="1.0"');
+    $session->responseContains('Freeform Color');
+    $session->responseContains('Color field description');
 
     // Test basic entry of color field.
     $edit = [

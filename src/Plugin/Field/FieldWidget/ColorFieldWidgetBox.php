@@ -2,9 +2,7 @@
 
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -19,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class ColorFieldWidgetBox extends WidgetBase {
+class ColorFieldWidgetBox extends ColorFieldWidgetBase {
 
   /**
    * {@inheritdoc}
@@ -76,61 +74,22 @@ class ColorFieldWidgetBox extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    // We are nesting some sub-elements inside the parent, so we need a wrapper.
-    // We also need to add another #title attribute at the top level for ease in
-    // identifying this item in error messages. We do not want to display this
-    // title because the actual title display is handled at a higher level by
-    // the Field module.
-    $element['#theme_wrappers'] = ['color_field_widget_box'];
-    $element['#attributes']['class'][] = 'container-inline';
-    $box_id = Html::getUniqueId('color-box-' . $this->fieldDefinition->getName());
+    $element = parent::formElement($items, $delta, $element, $form, $form_state);
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-box';
 
     // Set Drupal settings.
-    $settings[$box_id] = [
+    $settings[$element['#uid']] = [
       'required' => $this->fieldDefinition->isRequired(),
     ];
     $default_colors = $this->getSetting('default_colors');
     preg_match_all("/#[0-9a-fA-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
     foreach ($default_colors as $color) {
-      $settings[$box_id]['palette'][] = $color[0];
+      $settings[$element['#uid']]['palette'][] = $color[0];
     }
     $element['#attached']['drupalSettings']['color_field']['color_field_widget_box']['settings'] = $settings;
 
-    // Retrieve field label and description.
-    $element['#title'] = $this->fieldDefinition->getLabel();;
-    $element['#description'] = $this->fieldDefinition->getDescription();
-
-    // Prepare color.
-    $color = NULL;
-    if (isset($items[$delta]->color)) {
-      $color = $items[$delta]->color;
-      if (substr($color, 0, 1) !== '#') {
-        $color = '#' . $color;
-      }
-    }
-
-    $element['color'] = [
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#type' => 'textfield',
-      '#default_value' => $color,
-      '#attributes' => ['class' => ['visually-hidden']],
-    ];
-    $element['color']['#suffix'] = "<div class='color-field-widget-box-form' id='$box_id'></div>";
-
-    if ($this->getFieldSetting('opacity')) {
-      $element['opacity'] = [
-        '#title' => $this->t('Opacity'),
-        '#type' => 'number',
-        '#min' => 0,
-        '#max' => 1,
-        '#step' => 0.01,
-        '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
-        '#placeholder' => $this->getSetting('placeholder_opacity'),
-      ];
-    }
+    $element['color']['#suffix'] = "<div class='color-field-widget-box-form' id='" . $element['#uid'] . "'></div>";
 
     return $element;
   }

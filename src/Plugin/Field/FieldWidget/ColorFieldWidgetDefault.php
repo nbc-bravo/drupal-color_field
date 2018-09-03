@@ -3,7 +3,6 @@
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -18,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class ColorFieldWidgetDefault extends WidgetBase {
+class ColorFieldWidgetDefault extends ColorFieldWidgetBase {
 
   /**
    * {@inheritdoc}
@@ -77,33 +76,11 @@ class ColorFieldWidgetDefault extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-
-    $label = $this->fieldDefinition->getLabel();
-
-    $element['color'] = [
-      '#title' => $label,
-      '#type' => 'textfield',
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#required' => $element['#required'],
-      '#placeholder' => $this->getSetting('placeholder_color'),
-      '#default_value' => isset($items[$delta]->color) ? $items[$delta]->color : NULL,
-    ];
+    $element = parent::formElement($items, $delta, $element, $form, $form_state);
+    $element['color']['#placeholder'] = $this->getSetting('placeholder_color');
 
     if ($this->getFieldSetting('opacity')) {
-      $element['color']['#prefix'] = '<div class="container-inline">';
-
-      $element['opacity'] = [
-        '#title' => $this->t('Opacity'),
-        '#type' => 'number',
-        '#min' => 0,
-        '#max' => 1,
-        '#step' => 0.01,
-        '#required' => $element['#required'],
-        '#placeholder' => $this->getSetting('placeholder_opacity'),
-        '#default_value' => isset($items[$delta]->opacity) ? $items[$delta]->opacity : NULL,
-        '#suffix' => '</div>',
-      ];
+      $element['opacity']['#placeholder'] = $this->getSetting('placeholder_opacity');
     }
 
     return $element;
