@@ -101,8 +101,6 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
 
     $session = $this->getSession();
     $web_assert = $this->assertSession();
-
-    // Request the group details testing page.
     $this->drupalGet('node/add/article');
 
     $page = $session->getPage();
@@ -125,9 +123,7 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     $box->click();
     $field = $page->findField('field_color[0][color]');
     $this->assertEquals('#007749', $field->getValue());
-
   }
-
 
   /**
    * Test color_field_widget_spectrum widget.
@@ -157,8 +153,6 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
 
     $session = $this->getSession();
     $web_assert = $this->assertSession();
-
-    // Request the group details testing page.
     $this->drupalGet('node/add/article');
 
     $page = $session->getPage();
@@ -169,10 +163,9 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     // Confirm that two fields aren't sharing settings.
     // Also confirms that custom palette is being used correctly
     // and that the one field's palette isn't shown.
+    // 4 for the one palette plus one each for the widgets.
     $boxes = $page->findAll('css', '.sp-thumb-el');
-    $this->assertEquals(4, count($boxes));
-
-
+    $this->assertEquals(6, count($boxes));
   }
 
 }

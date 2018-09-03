@@ -116,7 +116,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     // Set Drupal settings.
     $settings = $this->getSettings();
 
-     // Compare with default settings make sure they are the same datatype.
+    // Compare with default settings make sure they are the same datatype.
     $defaults = self::defaultSettings();
     foreach ($settings as $key => $value) {
       if (is_bool($defaults[$key])) {
@@ -124,7 +124,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       }
     }
 
-    // Parsing Palette data so that it works with spectrum colorpicker.
+    // Parsing Palette data so that it works with spectrum color picker.
     // This will create a multidimensional array of hex values.
     if (!empty($settings['palette'])) {
       // Remove any whitespace.
