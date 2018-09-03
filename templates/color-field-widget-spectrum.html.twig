@@ -17,15 +17,14 @@
  */
 #}
 {%
-set title_classes = [
-required ? 'js-form-required',
-required ? 'form-required',
-]
+  set classes = [
+    'js-color-field-widget-spectrum',
+  ]
 %}
 
 {{ label }}
 
-<div class="js-color-field-widget-spectrum">
+<div {{ attributes.addClass(classes) }}>
   {{ color }}
   {{ opacity }}
 </div>

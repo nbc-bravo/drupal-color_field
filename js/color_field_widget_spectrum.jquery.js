@@ -34,7 +34,7 @@
           showAlpha: spectrum_settings.show_alpha,
           showPalette: spectrum_settings.show_palette,
           showPaletteOnly: spectrum_settings.show_palette_only,
-          palette: spectrum_settings.palette,
+          palette: JSON.parse('[' + spectrum_settings.palette + ']'),
           showButtons: spectrum_settings.show_buttons,
           allowEmpty: spectrum_settings.allow_empty,
 

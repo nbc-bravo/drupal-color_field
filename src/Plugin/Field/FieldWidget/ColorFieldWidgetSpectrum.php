@@ -57,7 +57,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
       '#type' => 'textarea',
       '#title' => $this->t('Color Palette'),
       '#default_value' => $this->getSetting('palette'),
-      '#description' => $this->t('Selectable color palette to accompany the Spectrum Widget'),
+      '#description' => $this->t('Selectable color palette to accompany the Spectrum Widget. Separate values with a comma, and group them with square brackets. Ex: <br> ["#fff","#aaa","#f00","#00f"],<br>["#414141","#242424","#0a8db9"]'),
       '#states' => [
         'visible' => [
           ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][show_palette]"]' => ['checked' => TRUE],

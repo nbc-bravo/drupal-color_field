@@ -128,4 +128,51 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
 
   }
 
+
+  /**
+   * Test color_field_widget_spectrum widget.
+   *
+   * Unfortunately since the spectrum library uses clickable divs instead of
+   * buttons, we can't use full interaction of clicks with elements. So instead
+   * we just confirm that the right html has been generated and assume that the
+   * library tests itself.
+   */
+  public function testColorFieldSpectrum() {
+    $this->form
+      ->setComponent('field_color_repeat', [
+        'type' => 'color_field_widget_spectrum',
+        'settings' => [
+          'palette' => '["#0678BE","#53B0EB", "#96BC44"]',
+          'show_palette' => FALSE,
+        ],
+      ])
+      ->setComponent('field_color', [
+        'type' => 'color_field_widget_spectrum',
+        'settings' => [
+          'palette' => '["#005493","#F5AA1C","#C63527","002754"]',
+          'show_palette' => TRUE,
+        ],
+      ])
+      ->save();
+
+    $session = $this->getSession();
+    $web_assert = $this->assertSession();
+
+    // Request the group details testing page.
+    $this->drupalGet('node/add/article');
+
+    $page = $session->getPage();
+
+    // Wait for elements to be generated.
+    $web_assert->waitForElementVisible('css', '.sp-preview');
+
+    // Confirm that two fields aren't sharing settings.
+    // Also confirms that custom palette is being used correctly
+    // and that the one field's palette isn't shown.
+    $boxes = $page->findAll('css', '.sp-thumb-el');
+    $this->assertEquals(4, count($boxes));
+
+
+  }
+
 }
