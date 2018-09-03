@@ -199,4 +199,63 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     $this->assertEquals(1, count($alpha));
   }
 
+  /**
+   * Test color_field_widget_grid widget.
+   *
+   * Unfortunately since the grid library ALSO uses clickable divs instead of
+   * buttons. We could use $session->evaluateScript() to do it but we'll
+   * presume it is  tested internally and just test the basic integration.
+   */
+  public function testColorFieldWidgetGrid() {
+    $this->form
+      ->setComponent('field_color_repeat', [
+        'type' => 'color_field_widget_grid',
+        'settings' => [
+          'cell_width' => '20',
+          'cell_height' => '20',
+          'cell_margin' => '1',
+          'box_width' => '250',
+          'box_height' => '100',
+          'columns' => '16',
+        ],
+      ])
+      ->setComponent('field_color', [
+        'type' => 'color_field_widget_grid',
+        'settings' => [
+          'cell_width' => '10',
+          'cell_height' => '10',
+          'cell_margin' => '1',
+          'box_width' => '115',
+          'box_height' => '20',
+          'columns' => '16',
+        ],
+      ])
+      ->save();
+
+    $session = $this->getSession();
+    $web_assert = $this->assertSession();
+    $this->drupalGet('node/add/article');
+
+    $page = $session->getPage();
+
+    // Confirm that help text/label are present.
+    $web_assert->responseContains('Freeform Color');
+    $web_assert->responseContains('Color field description');
+
+    // Wait for elements to be generated.
+    $web_assert->waitForElementVisible('css', '.simpleColorDisplay');
+
+    // Confirm that two fields aren't sharing settings.
+    $boxes = $page->findAll('css', '.simpleColorDisplay');
+    $this->assertEquals(2, count($boxes));
+    $script = <<< HEREDOC
+    (function() {
+    fields = jQuery('.simpleColorDisplay');
+    return jQuery(fields[0]).width() == jQuery(fields[1]).width()
+    })()
+HEREDOC;
+
+    $this->assertFalse($session->evaluateScript($script));
+  }
+
 }

@@ -144,9 +144,10 @@ class ColorFieldWidgetGrid extends ColorFieldWidgetBase {
 
     // Set Drupal settings.
     $settings = $this->getSettings();
-    $element['#attached']['drupalSettings']['color_field']['color_field_widget_grid'] = $settings;
+    $element['#attached']['drupalSettings']['color_field']['color_field_widget_grid'][$element['#uid']] = $settings;
 
     $element['color']['#attributes']['class'][] = 'js-color-field-widget-grid__color';
+    $element['color']['#attributes']['id'] = $element['#uid'];
     $element['color']['#wrapper_attributes']['class'][] = 'clearfix';
 
     return $element;
