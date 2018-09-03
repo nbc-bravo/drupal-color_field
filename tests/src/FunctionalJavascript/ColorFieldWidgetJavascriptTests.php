@@ -60,6 +60,12 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
       'entity_type' => 'node',
       'bundle' => 'article',
       'required' => TRUE,
+      'default_value' => [
+        [
+          'color' => 'ffb81c',
+          'opacity' => 0.5,
+        ],
+      ],
     ])->save();
     FieldStorageConfig::create([
       'field_name' => 'field_color_repeat',
@@ -122,6 +128,14 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     /** @var \Behat\Mink\Element\NodeElement $box */
     $box = $boxes[0];
     $this->assertEquals('#007749', $box->getAttribute('color'));
+
+
+    // Only one of the fields has a default, so it is the only one that should
+    // have a box that is selected. This also confirms that even if the storage
+    // setting isn't uppercase hash prefixed hex that it still correctly selects
+    // the right color in the color box widget.
+    $active = $page->findAll('css', 'button.active');
+    $this->assertEquals(1, count($active));
 
     // Confirm that clicking the swatch sets the field value.
     $box->click();

@@ -42,9 +42,35 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
       '#title' => $this->t('Default colors'),
       '#default_value' => $this->getSetting('default_colors'),
       '#required' => TRUE,
-      '#description' => $this->t('Default colors for pre-selected color boxes'),
+      '#element_validate' => [
+        [$this, 'settingsColorValidate'],
+      ],
+      '#description' => $this->t('Default colors for pre-selected color boxes. Enter as 6 digit upper case hex - such as #FF0000.'),
     ];
     return $element;
+  }
+
+  /**
+   * Use element validator to make sure that hex values are in correct format.
+   *
+   * @param $element
+   *   The Default colors element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   */
+  public function settingsColorValidate($element, FormStateInterface $form_state) {
+    $default_colors = $form_state->getValue($element['#parents']);
+    $colors = '';
+    if (!empty($default_colors)) {
+      preg_match_all("/#[0-9a-fA-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
+      foreach ($default_colors as $color) {
+        if (!empty($colors)) {
+          $colors .= ',';
+        }
+        $colors .= strtoupper($color[0]);
+      }
+    }
+    $form_state->setValue($element['#parents'], $colors);
   }
 
   /**
@@ -56,7 +82,7 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
     $default_colors = $this->getSetting('default_colors');
 
     if (!empty($default_colors)) {
-      preg_match_all("/#[0-9a-fA-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
+      preg_match_all("/#[0-9A-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
       foreach ($default_colors as $color) {
         $colors = $color[0];
         $summary[] = $colors;
@@ -75,6 +101,13 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
+    // Ensure the default value is the expected format whatever the storage format is.
+    if ($element['color']['#default_value']) {
+      $element['color']['#default_value'] = strtoupper($element['color']['#default_value']);
+      if (strlen($element['color']['#default_value']) === 6) {
+        $element['color']['#default_value'] = '#' . $element['color']['#default_value'];
+      }
+    }
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-box';
 
@@ -83,7 +116,7 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
       'required' => $this->fieldDefinition->isRequired(),
     ];
     $default_colors = $this->getSetting('default_colors');
-    preg_match_all("/#[0-9a-fA-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
+    preg_match_all("/#[0-9A-F]{6}/", $default_colors, $default_colors, PREG_SET_ORDER);
     foreach ($default_colors as $color) {
       $settings[$element['#uid']]['palette'][] = $color[0];
     }
