@@ -20,12 +20,12 @@
 
       var $context = $(context);
 
-      var spectrum_settings = settings.color_field.color_field_widget_spectrum;
 
       $context.find('.js-color-field-widget-spectrum').each(function (index, element) {
         var $element = $(element);
         var $element_color = $element.find('.js-color-field-widget-spectrum__color');
         var $element_opacity = $element.find('.js-color-field-widget-spectrum__opacity');
+        var spectrum_settings = settings.color_field.color_field_widget_spectrum[$element.attr('id')];
 
         $element_color.spectrum({
           showInitial: true,

@@ -2,6 +2,7 @@
 
 namespace Drupal\color_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -110,6 +111,7 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     $element['#theme_wrappers'] = ['color_field_widget_spectrum'];
 
     $element['#attached']['library'][] = 'color_field/color-field-widget-spectrum';
+    $id = Html::getUniqueId('spectrum-' . $this->fieldDefinition->getName());
 
     // Set Drupal settings.
     $settings = $this->getSettings();
@@ -139,7 +141,8 @@ class ColorFieldWidgetSpectrum extends WidgetBase {
     }
 
     $settings['show_alpha'] = $this->getFieldSetting('opacity');
-    $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'] = $settings;
+    $element['#attributes']['id'] = $id;
+    $element['#attached']['drupalSettings']['color_field']['color_field_widget_spectrum'][$id] = $settings;
 
     // Prepare color.
     $color = NULL;
