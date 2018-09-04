@@ -53,12 +53,12 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
   /**
    * Use element validator to make sure that hex values are in correct format.
    *
-   * @param $element
+   * @param array $element
    *   The Default colors element.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
-  public function settingsColorValidate($element, FormStateInterface $form_state) {
+  public function settingsColorValidate(array $element, FormStateInterface $form_state) {
     $default_colors = $form_state->getValue($element['#parents']);
     $colors = '';
     if (!empty($default_colors)) {
@@ -101,7 +101,7 @@ class ColorFieldWidgetBox extends ColorFieldWidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
-    // Ensure the default value is the expected format whatever the storage format is.
+    // Ensure the default value is the required format.
     if ($element['color']['#default_value']) {
       $element['color']['#default_value'] = strtoupper($element['color']['#default_value']);
       if (strlen($element['color']['#default_value']) === 6) {

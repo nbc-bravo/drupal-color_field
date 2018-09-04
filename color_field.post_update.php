@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Contains post update functionality for the color field module.
+ * @file
+ * Contains post update functionality for the color field module.
  */
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;

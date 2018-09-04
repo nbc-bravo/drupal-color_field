@@ -4,14 +4,14 @@ namespace Drupal\Tests\color_field\FunctionalJavascript;
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
  * Tests for form grouping elements.
  *
  * @group form
  */
-class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
+class ColorFieldWidgetJavascriptTests extends WebDriverTestBase {
 
   /**
    * Modules to enable.
@@ -128,7 +128,6 @@ class ColorFieldWidgetJavascriptTests extends JavascriptTestBase {
     /** @var \Behat\Mink\Element\NodeElement $box */
     $box = $boxes[0];
     $this->assertEquals('#007749', $box->getAttribute('color'));
-
 
     // Only one of the fields has a default, so it is the only one that should
     // have a box that is selected. This also confirms that even if the storage
