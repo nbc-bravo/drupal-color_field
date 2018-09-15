@@ -6,7 +6,8 @@
   "require-dev": {
     "drupal/token": "~1.3",
     "php-composter/php-composter": "^0.3.3",
-    "nickwilde1990/php-composter-phpcs-drupal": "^1.0"
+    "nickwilde1990/php-composter-phpcs-drupal": "^1.0",
+    "squizlabs/php_codesniffer": "2.9.x-dev@dev"
   },
   "suggest": {
     "bower-asset/jquery-simple-color": "^v1.2.2: Provides JavaScript library necessary for the Color Grid widget",
