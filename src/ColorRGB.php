@@ -119,7 +119,7 @@ class ColorRGB extends ColorBase {
   /**
    * {@inheritdoc}
    */
-  public function toRGB() {
+  public function toRgb() {
     return $this;
   }
 

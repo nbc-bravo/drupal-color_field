@@ -29,11 +29,11 @@ interface ColorInterface {
    * @return \Drupal\color_field\ColorRGB
    *   The color as a RGB instance.
    */
-  public function toRGB();
+  public function toRgb();
 
   // Public function toHSV();
   // public function toHSL();
-  // public function toRGB();
+  // public function toRgb();
   // public function toCMYK();
   // public function toCSS();
 }

@@ -114,20 +114,20 @@ class ColorCMYK extends ColorBase {
    * {@inheritdoc}
    */
   public function toHex() {
-    return $this->toRGB()->toHex();
+    return $this->toRgb()->toHex();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function toRGB() {
-    return $this->toCMY()->toRGB();
+  public function toRgb() {
+    return $this->toCmy()->toRgb();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function toCMY() {
+  public function toCmy() {
     $cyan = ($this->cyan * (1 - $this->key) + $this->key);
     $magenta = ($this->magenta * (1 - $this->key) + $this->key);
     $yellow = ($this->yellow * (1 - $this->key) + $this->key);
