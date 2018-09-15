@@ -30,3 +30,12 @@
   height: 32px;
   width: 32px;
 }
+
+input.color_field_widget_box__color.required {
+  display: block !important;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
