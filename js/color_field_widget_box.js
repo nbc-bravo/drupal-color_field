@@ -35,6 +35,7 @@ jQuery.fn.addColorPicker = function (props) {
   this.addBlotchElement = function(color, blotchClass) {
     var elem = jQuery('<' + props.blotchElemType + '/>')
       .addClass(blotchClass)
+      .attr('value',color)
       .attr('color',color)
       .attr('title', color)
       .css('background-color',color);
